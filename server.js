@@ -23,7 +23,7 @@ app.get('/login', (req, res) => {
     querystring.stringify({
       response_type: 'code',
       client_id: env.CLIENT_ID,
-      scope: 'user-read-private user-read-email',
+      scope: 'user-read-private user-read-email user-top-read',
       redirect_uri: env.REDIRECT_URI,
       state: state  
     }));
@@ -62,5 +62,5 @@ app.get('/callback', (req, res) => {
 });
 
 const port = 8888;
-console.log(`Listening on port ${port}. Go to /login to initiate authentication flow.`);
+console.log(`Server up. Listening on port ${port}.`);
 app.listen(port);
