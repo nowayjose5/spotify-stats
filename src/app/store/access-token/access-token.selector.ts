@@ -1,3 +1,10 @@
+import { createSelector } from '@ngrx/store';
 import { AppStore } from '../state';
 
-export const selectAccessToken = (state: AppStore) => state.accessToken;
+export const selectAccessTokenState = (state: AppStore) =>
+  state.accessTokenState;
+
+export const selectAccessToken = createSelector(
+  selectAccessTokenState,
+  accessTokenState => accessTokenState.token
+);

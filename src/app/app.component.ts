@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Store } from '@ngrx/store';
 
-import { AppStore, setAccessToken } from './store';
+import { AccessTokenFacadeService } from './facades';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
+  accessToken$ = this._accessTokenFacade.accessToken$;
+  clearToken = this._accessTokenFacade.clearToken;
+
   constructor(
     private _route: ActivatedRoute,
-    private _store: Store<AppStore>
+    private _accessTokenFacade: AccessTokenFacadeService
   ) {}
 
   ngOnInit(): void {
@@ -19,7 +21,7 @@ export class AppComponent implements OnInit {
       const token = params.access_token;
       if (token) {
         console.log('have token!!');
-        this._store.dispatch(setAccessToken({ token }));
+        this._accessTokenFacade.setToken(token);
       } else {
         console.log('no token! LOGIN!!!');
       }

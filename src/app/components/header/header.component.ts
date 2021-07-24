@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { map, take } from 'rxjs/operators';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,22 +6,17 @@ import { map, take } from 'rxjs/operators';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  accessToken$ = this._route.queryParams.pipe(
-    map(params => params.access_token)
-  );
-
-  constructor(private _route: ActivatedRoute) {}
+  @Input() accessToken: string;
+  @Input() clearToken: () => void;
 
   login() {
-    // hit backend url to login into spotify
-    this._route.queryParams.pipe(take(1)).subscribe(params => {
-      const token = params.access_token;
-      // hit backend url if no access token
-      if (!token) {
-        window.location.href = 'http://localhost:8888/login';
-      }
-    });
+    // hit backend url to login into spotify if there's no aceess token
+    if (!this.accessToken) {
+      window.location.href = 'http://localhost:8888/login';
+    }
   }
 
-  logout() {}
+  logout() {
+    this.clearToken();
+  }
 }

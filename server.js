@@ -38,7 +38,7 @@ app.get('/callback', (req, res) => {
 
   if (state === null || !req.headers.cookie.includes(state)) {
     res.redirect(
-      '/#' +
+      'http://localhost:4200?' +
         querystring.stringify({
           error: 'state_mismatch',
         })
@@ -62,8 +62,24 @@ app.get('/callback', (req, res) => {
       json: true,
     };
     request.post(authOptions, (error, response, body) => {
-      const access_token = body.access_token;
-      res.redirect(`http://localhost:4200?access_token=${access_token}`);
+      if (!error && response.statusCode === 200) {
+        const access_token = body.access_token;
+        const refresh_token = body.refresh_token;
+        res.redirect(
+          'http://localhost:4200?' +
+            querystring.stringify({
+              access_token: access_token,
+              refresh_token: refresh_token,
+            })
+        );
+      } else {
+        res.redirect(
+          'http://localhost:4200?' +
+            querystring.stringify({
+              error: 'invalid_token',
+            })
+        );
+      }
     });
   }
 });

@@ -1,4 +1,12 @@
 {
-	"singleQuote": true,
-	"arrowParens": "avoid"
+  "singleQuote": true,
+  "arrowParens": "avoid",
+  "overrides": [
+    {
+      "files": "src/**/*.html",
+      "options": {
+        "printWidth": 120
+      }
+    }
+  ]
 }

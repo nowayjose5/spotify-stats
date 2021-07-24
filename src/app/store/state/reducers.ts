@@ -1,5 +1,5 @@
-import * as accessToken from '../access-token/access-token.reducer';
+import * as accessTokenState from '../access-token/access-token.reducer';
 
 export const appReducers = {
-  accessToken: accessToken.reducer,
+  accessTokenState: accessTokenState.reducer,
 };
