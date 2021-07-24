@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
 
-# Spotify Dashboard/Configuring your node server
+## Spotify Dashboard/Configuring your node server
 
 Need to log into or sign up for a Spotify Developer account [here](https://developer.spotify.com/dashboard/) to get started.
 Once you have account setup and logged in, create a new app in the Spotify Dashboard.
