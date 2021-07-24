@@ -1,18 +1,20 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { take } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  constructor(
-    private _route: ActivatedRoute
-  ) { }
+  accessToken$ = this._route.queryParams.pipe(
+    map(params => params.access_token)
+  );
 
-  onLoginClick(): void {
+  constructor(private _route: ActivatedRoute) {}
+
+  login() {
     // hit backend url to login into spotify
     this._route.queryParams.pipe(take(1)).subscribe(params => {
       const token = params.access_token;
@@ -22,4 +24,6 @@ export class HeaderComponent {
       }
     });
   }
- }
+
+  logout() {}
+}

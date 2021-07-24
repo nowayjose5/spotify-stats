@@ -1,3 +1,3 @@
 import { AppStore } from '../state';
 
-export const selectAccessToken = ((state: AppStore) => state.accessToken);
+export const selectAccessToken = (state: AppStore) => state.accessToken;

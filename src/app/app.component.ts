@@ -6,10 +6,13 @@ import { AppStore, setAccessToken } from './store';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  constructor(private _route: ActivatedRoute, private _store: Store<AppStore>) { }
+  constructor(
+    private _route: ActivatedRoute,
+    private _store: Store<AppStore>
+  ) {}
 
   ngOnInit(): void {
     this._route.queryParams.subscribe(params => {
@@ -22,4 +25,4 @@ export class AppComponent implements OnInit {
       }
     });
   }
- }
+}

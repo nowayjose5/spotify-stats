@@ -1,6 +1,7 @@
 <header role="navigation">
   <div class="header__inner-container">
     <h1>Welcome to Spotify Stats!</h1>
-    <button type="button" class="btn btn-primary" (click)="onLoginClick()">Log In</button>
+    <button type="button" class="btn btn-primary" (click)="login()" *ngIf="(accessToken$ | async) === false">Log In</button>
+    <button type="button" class="btn btn-primary" (click)="logout()" *ngIf="accessToken$ | async">Log Out</button>
   </div>
 </header>

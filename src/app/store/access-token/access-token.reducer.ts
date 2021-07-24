@@ -10,17 +10,23 @@ export const initialState = null;
 
 const accessTokenReducer = createReducer(
   initialState,
-  on(setAccessToken, (state: AccessTokenState | null, { token }): AccessTokenState => {
-    if (token) {
-      return {
-        ...state,
-        token
-      };
+  on(
+    setAccessToken,
+    (state: AccessTokenState | null, { token }): AccessTokenState => {
+      if (token) {
+        return {
+          ...state,
+          token,
+        };
+      }
+      return state;
     }
-    return state;
-  })
+  )
 );
 
-export function reducer(state: AccessTokenState | null, action: Action): AccessTokenState {
+export function reducer(
+  state: AccessTokenState | null,
+  action: Action
+): AccessTokenState {
   return accessTokenReducer(state, action);
 }
