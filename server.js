@@ -28,6 +28,7 @@ app.get('/login', (req, res) => {
         scope: 'user-read-private user-read-email user-top-read',
         redirect_uri: env.REDIRECT_URI,
         state: state,
+        show_dialog: true
       })
   );
 });
