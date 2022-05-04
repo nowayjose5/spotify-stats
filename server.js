@@ -54,11 +54,12 @@ app.get('/callback', (req, res) => {
         grant_type: 'authorization_code',
       },
       headers: {
-        Authorization:
+        'Authorization':
           'Basic ' +
           new Buffer.from(`${env.CLIENT_ID}:${env.CLIENT_SECRET}`).toString(
             'base64'
           ),
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
       json: true,
     };
