@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderComponent {
   @Input() accessToken: string;
-  @Input() clearToken: () => void;
+  @Input() clearAccessToken: () => void;
 
   login() {
     // hit backend url to login into spotify if there's no aceess token
@@ -17,6 +17,6 @@ export class HeaderComponent {
   }
 
   logout() {
-    this.clearToken();
+    this.clearAccessToken();
   }
 }
